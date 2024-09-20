@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  # Node.js service
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - "3001:5001"
+    volumes:
+      - .:/app
+    environment:
+      - MONGO_URI=mongodb://127.0.0.1:27017/newDatabase
+    depends_on:
+      - mongo
+
+  # MongoDB service
+  mongo:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
