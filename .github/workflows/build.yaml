@@ -42,7 +42,7 @@ jobs:
         username: ${{secrets.SSH_USERNAME}}
         key: ${{secrets.SSH_KEY}}
         port: 22
-        source: "/docker-compose.yaml"
+        source: "files/docker-compose.yaml"
         target: "./" 
       
     - name: Deploy to EC2
