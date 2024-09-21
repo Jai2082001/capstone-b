@@ -24,23 +24,14 @@ jobs:
       with:
         context: .
         file: ./docker/Dockerfile
-        # ads
         push: true
         tags: jaideepgrover/capstoneback  
 
     - name: Verify Pushed Image
       run: docker pull jaideepgrover/capstoneback:latest  
-    # improved key
-    # ada
-    - name: Send out docker-compose
-      uses: appleboy/scp-action@master
-      with: 
-        host: ${{secrets.SSH_HOST}}
-        username: ${{secrets.SSH_USERNAME}}
-        key: ${{secrets.SSH_KEY}}
-        source: "/docker-compose.yaml"
-        target: "./" 
 
+
+      
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
       with:
@@ -51,5 +42,15 @@ jobs:
           sudo docker pull jaideepgrover/capstoneback:latest
           sudo docker stop capstoneback || true
           sudo docker rm capstoneback || true
-          sudo docker-compose up --build
           
+          
+    
+    # - name: Send out docker-compose
+    #   uses: appleboy/scp-action@master
+    #   with: 
+    #     host: ${{secrets.SSH_HOST}}
+    #     username: ${{secrets.SSH_USERNAME}}
+    #     key: ${{secrets.SSH_KEY}}
+    #     source: "/docker-compose.yaml"
+    #     target: "./" 
+# sudo docker-compose up --build
