@@ -35,15 +35,15 @@ jobs:
         echo "Host: ${{ secrets.SSH_HOST }}"
         echo "User: ${{ secrets.SSH_USERNAME }}"
 
-    - name: Send out docker-compose
-      uses: appleboy/scp-action@master
-      with: 
-        host: ${{secrets.SSH_HOST}}
-        username: ${{secrets.SSH_USERNAME}}
-        key: ${{secrets.SSH_KEY}}
-        port: 22
-        source: "/docker-compose.yaml"
-        target: "./" 
+    # - name: Send out docker-compose
+    #   uses: appleboy/scp-action@master
+    #   with: 
+    #     host: ${{secrets.SSH_HOST}}
+    #     username: ${{secrets.SSH_USERNAME}}
+    #     key: ${{secrets.SSH_KEY}}
+    #     port: 22
+    #     source: "/docker-compose.yaml"
+    #     target: "./" 
       
     - name: Deploy to EC2
       uses: appleboy/ssh-action@master
